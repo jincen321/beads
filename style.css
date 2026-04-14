@@ -107,7 +107,7 @@ nav ul li a:hover {
     padding: 120px 0;
     text-align: center;
     background: linear-gradient(rgba(255, 249, 251, 0.85), rgba(255, 238, 242, 0.85)), 
-                url('photos/highlight-1.jpg');
+                url('photos/logo.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -115,31 +115,64 @@ nav ul li a:hover {
 
 .hero h1 {
     font-size: 64px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--primary-color);
     text-shadow: 1px 1px 2px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-deco-img {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
 }
 
 .hero p {
     font-size: 32px;
-    margin-bottom: 10px;
-    max-width: 600px;
+    margin-bottom: 15px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     font-weight: bold;
     text-shadow: 1px 1px 2px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
-.hero-slogan {
+.hero-slogan-line {
     font-size: 22px;
     color: #666;
     font-style: italic;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     text-shadow: 1px 1px 1px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.desc-deco-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.slogan-deco-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
 }
 
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 15px 30px;
     margin: 10px;
     border-radius: 50px;
@@ -149,6 +182,12 @@ nav ul li a:hover {
     transition: transform 0.2s;
     border: none;
     cursor: pointer;
+}
+
+.btn-icon {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
 }
 
 .btn-primary {
@@ -167,8 +206,16 @@ nav ul li a:hover {
 
 .hero-icons {
     margin-top: 40px;
-    font-size: 24px;
-    letter-spacing: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-icons img {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
 }
 
 /* Features */
@@ -191,9 +238,11 @@ nav ul li a:hover {
 }
 
 .feature-item .icon {
-    font-size: 40px;
+    height: 60px;
+    width: auto;
     display: block;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
+    object-fit: contain;
 }
 
 /* Highlights Section */
@@ -313,6 +362,16 @@ nav ul li a:hover {
     font-size: 36px;
     margin-bottom: 50px;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.title-icon {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
 }
 
 .price-tables {
@@ -328,11 +387,25 @@ nav ul li a:hover {
     box-shadow: var(--box-shadow);
 }
 
-.price-card h3 {
+.price-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     margin-bottom: 20px;
-    font-size: 24px;
     border-bottom: 2px dashed var(--primary-color);
     padding-bottom: 10px;
+}
+
+.card-title-icon {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+}
+
+.price-card h3 {
+    margin-bottom: 0;
+    font-size: 24px;
 }
 
 table {
