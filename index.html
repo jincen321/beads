@@ -33,14 +33,36 @@
 
     <section id="home" class="hero">
         <div class="container hero-container">
-            <h1 data-i18n="hero_title">豆豆王国</h1>
-            <p data-i18n="hero_desc">拼豆工作室</p>
-            <div class="hero-slogan" data-i18n="hero_slogan">一粒粒豆子，组成属于自己的王国</div>
-            <div class="cta-buttons">
-                <a href="#booking" class="btn btn-primary" data-i18n="cta_booking">预约体验 ✨🧸</a>
-                <a href="#pricing" class="btn btn-secondary" data-i18n="cta_pricing">查看价位 🍭</a>
+            <h1 class="hero-title">
+                <img src="photos/hero-left.png" alt="Bead" class="hero-deco-img">
+                <span data-i18n="hero_title">豆豆王国</span>
+                <img src="photos/hero-right.png" alt="Bead" class="hero-deco-img">
+            </h1>
+            <p class="hero-desc-line">
+                <img src="photos/desc-left.png" alt="Bead" class="desc-deco-img">
+                <span data-i18n="hero_desc">拼豆工作室</span>
+            </p>
+            <div class="hero-slogan-line">
+                <img src="photos/slogan-left.png" alt="Bead" class="slogan-deco-img">
+                <span data-i18n="hero_slogan">一粒粒豆子，组成属于自己的王国</span>
             </div>
-            <div class="hero-icons">✨⭐🌈🍭🧸</div>
+            <div class="cta-buttons">
+                <a href="#booking" class="btn btn-primary">
+                    <span data-i18n="cta_booking">预约体验</span>
+                    <img src="photos/btn-booking.png" alt="icon" class="btn-icon">
+                </a>
+                <a href="#pricing" class="btn btn-secondary">
+                    <span data-i18n="cta_pricing">查看价位</span>
+                    <img src="photos/btn-pricing.png" alt="icon" class="btn-icon">
+                </a>
+            </div>
+            <div class="hero-icons">
+                <img src="photos/sparkle-1.png" alt="sparkle">
+                <img src="photos/sparkle-2.png" alt="sparkle">
+                <img src="photos/sparkle-3.png" alt="sparkle" style="height: 45px;">
+                <img src="photos/sparkle-4.png" alt="sparkle">
+                <img src="photos/sparkle-5.png" alt="sparkle">
+            </div>
         </div>
     </section>
 
@@ -48,22 +70,22 @@
         <div class="container">
             <div class="feature-grid">
                 <div class="feature-item">
-                    <span class="icon">✨</span>
+                    <img src="photos/feat-icon-1.png" alt="Icon" class="icon">
                     <h3 data-i18n="feat1_title">专业烫印</h3>
                     <p data-i18n="feat1_desc">店内使用全自动烫画机，默认单面无孔，也提供特殊烫。工作人员会帮你完成最后的烫印步骤，确保作品完美。</p>
                 </div>
                 <div class="feature-item">
-                    <span class="icon">🎨</span>
+                    <img src="photos/feat-icon-2.png" alt="Icon" class="icon">
                     <h3 data-i18n="feat2_title">免费工具</h3>
-                    <p data-i18n="feat2_desc">店内工具有大小豆板，单双针豆笔，豆铲，立豆盘，尖头弯头镊子等，按需取用。</p>
+                    <p data-i18n="feat2_desc">店内工具有大小豆板，单双针豆笔，豆铲，立豆盘，尖头弯头镊子等。</p>
                 </div>
                 <div class="feature-item">
-                    <span class="icon">🎁</span>
+                    <img src="photos/feat-icon-3.png" alt="Icon" class="icon">
                     <h3 data-i18n="feat3_title">自定成品</h3>
                     <p data-i18n="feat3_desc">成品可做钥匙扣，冰箱贴，手机链，风铃，Crocs鞋扣等。</p>
                 </div>
                 <div class="feature-item">
-                    <span class="icon">🎟️</span>
+                    <img src="photos/feat-icon-4.png" alt="Icon" class="icon">
                     <h3 data-i18n="feat4_title">分享特惠</h3>
                     <p data-i18n="feat4_desc">在任何社交媒体上分享，下次来即可享受8折优惠</p>
                 </div>
@@ -73,20 +95,26 @@
 
     <section id="highlights" class="highlights">
         <div class="container">
-            <h2 class="section-title" data-i18n="highlights_title">拼豆精选 ✨</h2>
+            <h2 class="section-title">
+                <span data-i18n="highlights_title">拼豆精选</span>
+                <img src="photos/high-title.png" alt="Highlight" class="title-icon">
+            </h2>
             <div class="highlight-grid">
-                <div class="highlight-item">
-                    <img src="photos/highlight-1.jpg" alt="Highlight 1">
-                </div>
                 <div class="highlight-item">
                     <img src="photos/微信图片_20260411232112.jpg" alt="Highlight 2">
                 </div>
                 <div class="highlight-item">
                     <img src="photos/微信图片_20260411232124.jpg" alt="Highlight 3">
                 </div>
+                <div class="highlight-item">
+                    <img src="photos/微信图片_20260411232130.jpg" alt="Highlight 4">
+                </div>
             </div>
             <div class="highlights-cta">
-                <button type="button" id="openGalleryBtn" class="btn btn-primary" data-i18n="btn_view_details">查看详情 🌈</button>
+                <button type="button" id="openGalleryBtn" class="btn btn-primary">
+                    <span data-i18n="btn_view_details">查看详情</span>
+                    <img src="photos/view-details.png" alt="icon" class="btn-icon">
+                </button>
             </div>
         </div>
     </section>
@@ -106,10 +134,16 @@
 
     <section id="pricing" class="pricing">
         <div class="container">
-            <h2 class="section-title" data-i18n="pricing_title">价位表 🌈</h2>
+            <h2 class="section-title">
+                <span data-i18n="pricing_title">价位表</span>
+                <img src="photos/price-title.png" alt="Pricing" class="title-icon">
+            </h2>
             <div class="price-tables">
                 <div class="price-card">
-                    <h3 data-i18n="hourly_pricing">🧸 按时计费</h3>
+                    <div class="card-header">
+                        <img src="photos/hourly-icon.png" alt="Hourly" class="card-title-icon">
+                        <h3 data-i18n="hourly_pricing">按时计费</h3>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -130,7 +164,10 @@
                     </table>
                 </div>
                 <div class="price-card">
-                    <h3 data-i18n="daypass_pricing">🍓 全天通票</h3>
+                    <div class="card-header">
+                        <img src="photos/daypass-icon.png" alt="Day Pass" class="card-title-icon">
+                        <h3 data-i18n="daypass_pricing">全天通票</h3>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -156,7 +193,10 @@
 
     <section id="booking" class="booking">
         <div class="container">
-            <h2 class="section-title" data-i18n="booking_title">预约体验 ✨🎀</h2>
+            <h2 class="section-title">
+                <span data-i18n="booking_title">预约体验</span>
+                <img src="photos/booking-title.png" alt="Booking" class="title-icon">
+            </h2>
             <div class="booking-app">
                 <div class="booking-header">
                     <div class="studio-mini-card">
