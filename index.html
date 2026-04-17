@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼豆时光工作室 | DIY Perler Bead Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🐰🐻 拼豆时光 (Beads Time)</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#pricing">价位表</a></li>
+                    <li><a href="#booking">预约体验</a></li>
+                    <li><a href="#social">社交媒体</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>✦ DIY 拼豆创意工作室 ✦</h1>
+            <p>在这里，你可以亲手制作属于你的像素艺术。我们提供所有工具，无需任何经验！</p>
+            <div class="cta-buttons">
+                <a href="#booking" class="btn btn-primary">预约体验 🎀</a>
+                <a href="#pricing" class="btn btn-secondary">查看价位 💰</a>
+            </div>
+            <div class="hero-icons">💗💛💚💗💜</div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="icon">🔥</span>
+                    <h3>专业烫印</h3>
+                    <p>我们提供专业热压机，工作人员会帮你完成最后的烫印步骤，确保作品完美。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🧰</span>
+                    <h3>免费工具</h3>
+                    <p>镊子、拼豆板、助烫纸等工具全部免费提供，拎包即玩。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🔑</span>
+                    <h3>免费周边</h3>
+                    <p>每拼满1小时即可获赠精美钥匙扣一个！</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">👑</span>
+                    <h3>会员特权</h3>
+                    <p>享受折扣、专属活动及幸运抽奖。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">价位表 💸</h2>
+            <div class="price-tables">
+                <div class="price-card">
+                    <h3>⏱ 按时计费</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>单人 (Solo)</th>
+                                <th>双人 (Duo)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>标准时薪</td>
+                                <td>¥16 /小时</td>
+                                <td>¥14 /人/小时</td>
+                            </tr>
+                            <tr>
+                                <td>会员优惠</td>
+                                <td>¥14 /小时</td>
+                                <td>¥12 /人/小时</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="price-card">
+                    <h3>🎉 全天通票</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>单人 (Solo)</th>
+                                <th>双人 (Duo)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>标准通票</td>
+                                <td>¥59 /天</td>
+                                <td>¥49 /人/天</td>
+                            </tr>
+                            <tr>
+                                <td>会员通票</td>
+                                <td>¥54 /天</td>
+                                <td>¥46 /人/天</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">预约体验 🗓</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="service">选择服务</label>
+                    <select id="service" required>
+                        <option value="hourly">按时计费 (Hourly)</option>
+                        <option value="daypass">全天通票 (Day Pass)</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="people">人数</label>
+                        <input type="number" id="people" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">日期</label>
+                        <input type="date" id="date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" placeholder="您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="tel" id="phone" placeholder="您的电话" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="wechat">微信 ID (可选)</label>
+                    <input type="text" id="wechat" placeholder="方便我们联系您确认">
+                </div>
+                <div class="form-group">
+                    <label for="notes">特别说明</label>
+                    <textarea id="notes" rows="3" placeholder="例如：生日派对、特殊需求等"></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">提交预约</button>
+            </form>
+            <div id="successMessage" class="success-message hidden">
+                <h3>✓ 预约已提交！</h3>
+                <p>我们已收到您的预约请求，会尽快与您联系确认。请关注您的手机或添加我们的微信。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="social">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-icon">Instagram</a>
+                <a href="#" class="social-icon">TikTok</a>
+                <a href="#" class="social-icon">小红书</a>
+                <a href="#" class="social-icon">微信公众号</a>
+            </div>
+            <p>&copy; 2026 拼豆时光 (Beads Time) Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
