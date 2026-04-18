@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwfzheZwx4DYF3VMl_zKqYq_6ERM9NSA1DxBcM3hykaiICNEKmMxhHEl5QCFBEPr9lJiw/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0qjj4fjfQURV5etRCkSP0-qqNPsWyt9pHHsRQtFcsGJ9g-uYbD3aTU-uNbcM8v3LKQ/exec';
 const languageSelect = document.getElementById('languageSelect');
 const totalPriceDisplay = document.getElementById('totalPriceDisplay');
 const confirmBookingBtn = document.getElementById('confirmBookingBtn');
