@@ -230,10 +230,10 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
     const dayOfWeek = d.getDay();
     
     let startHour = 12;
-    let endHour = 19; // Default Wed/Thu
+    let endHour = 18; // Default Wed/Thu
     
     if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) { // Fri/Sat/Sun
-        endHour = 21;
+        endHour = 20;
     }
 
     for (let h = startHour; h <= endHour; h++) {
