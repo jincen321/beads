@@ -181,14 +181,18 @@ function renderDates() {
         const dayOfWeek = d.getDay();
 
         if (validDays.includes(dayOfWeek)) {
-            const dateStr = d.toISOString().split('T')[0];
+            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
             const dateNum = d.getDate();
             let dayName = translations[lang][dayNames[dayOfWeek]];
             
             // Basic label check for Today/Tomorrow
-            const diffDays = Math.floor((d.getTime() - new Date(today.toISOString().split('T')[0]).getTime()) / (1000 * 60 * 60 * 24));
-            if (diffDays === 0) dayName = translations[lang].today;
-            if (diffDays === 1) dayName = translations[lang].tomorrow;
+            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            if (dateStr === todayStr) dayName = translations[lang].today;
+            
+            const tmr = new Date();
+            tmr.setDate(today.getDate() + 1);
+            const tmrStr = `${tmr.getFullYear()}-${String(tmr.getMonth() + 1).padStart(2, '0')}-${String(tmr.getDate()).padStart(2, '0')}`;
+            if (dateStr === tmrStr) dayName = translations[lang].tomorrow;
 
             const card = document.createElement('div');
             card.className = `date-card ${bookingState.date === dateStr ? 'active' : ''}`;
@@ -226,7 +230,9 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
     
     if (!bookingState.date) return;
     
-    const d = new Date(bookingState.date);
+    // Parse date safely to avoid timezone shifts
+    const [y, m, day] = bookingState.date.split('-').map(Number);
+    const d = new Date(y, m - 1, day);
     const dayOfWeek = d.getDay();
     
     let startHour = 12;
@@ -237,24 +243,29 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
     }
 
     for (let h = startHour; h <= endHour; h++) {
-        const time = `${h}:00`;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = `grid-btn ${bookingState.startTime === time ? 'active' : ''}`;
-        btn.innerText = time;
-        
-        // Disable if full (18 people limit)
-        const currentCount = occupancy[time] || 0;
-        if (currentCount >= limit) {
-            btn.disabled = true;
-        }
+        const intervals = ['00', '30'];
+        for (let m of intervals) {
+            if (h === endHour && m === '30') continue;
+            
+            const time = `${h}:${m}`;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `grid-btn ${bookingState.startTime === time ? 'active' : ''}`;
+            btn.innerText = time;
+            
+            // Disable if full (18 people limit)
+            const currentCount = occupancy[time] || 0;
+            if (currentCount >= limit) {
+                btn.disabled = true;
+            }
 
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.time-grid .grid-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            bookingState.startTime = time;
-        });
-        timeGrid.appendChild(btn);
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.time-grid .grid-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                bookingState.startTime = time;
+            });
+            timeGrid.appendChild(btn);
+        }
     }
 }
 
@@ -471,4 +482,5 @@ if (slider) {
         slider.scrollLeft = scrollLeft - walk;
     });
 }
+
 
