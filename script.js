@@ -348,8 +348,26 @@ confirmBookingBtn.addEventListener('click', () => {
     confirmBookingBtn.innerText = translations[lang].btn_submitting;
     errorMessage.classList.add('hidden');
 
+    // Calculate dynamic duration for All-Day Pass
+    let finalDuration = bookingState.duration;
+    if (bookingState.isAllDay && bookingState.startTime) {
+        const [y, m, day] = bookingState.date.split('-').map(Number);
+        const d = new Date(y, m - 1, day);
+        const dayOfWeek = d.getDay();
+        
+        let closingHour = 18; // Wed/Thu
+        if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
+            closingHour = 20; // Fri/Sat/Sun
+        }
+        
+        const startHour = parseInt(bookingState.startTime.split(':')[0]);
+        const startMin = parseInt(bookingState.startTime.split(':')[1]) / 60;
+        finalDuration = closingHour - (startHour + startMin);
+    }
+
     const payload = {
         ...bookingState,
+        duration: finalDuration,
         name, phone, email, notes,
         service: bookingState.isAllDay ? 'Day Pass' : 'Session'
     };
