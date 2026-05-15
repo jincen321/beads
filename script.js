@@ -28,6 +28,11 @@ const translations = {
         hero_slogan: "一粒粒豆子，组成属于自己的王国",
         cta_booking: "预约体验",
         cta_pricing: "查看价位",
+        member_title: "免费会员制度",
+        member_rule_1: "每消费 $1 = 1积分",
+        member_rule_2: "50 积分可减 $5",
+        member_rule_3: "100 积分可减 $15",
+        member_rule_4: "当天就能直接使用",
         feat1_title: "专业烫印",
         feat1_desc: "店内使用全自动烫画机，默认单面无孔，也提供特殊烫。工作人员会帮你完成最后的烫印步骤，确保作品完美。",
         feat2_title: "免费工具",
@@ -90,6 +95,11 @@ const translations = {
         hero_slogan: "Bead by bead, building a kingdom of your own",
         cta_booking: "Book Now",
         cta_pricing: "View Pricing",
+        member_title: "Free Membership Program",
+        member_rule_1: "Earn 1 point for every $1 spent",
+        member_rule_2: "50 points = $5 off",
+        member_rule_3: "100 points = $15 off",
+        member_rule_4: "Points can be used immediately",
         feat1_title: "Professional Ironing",
         feat1_desc: "We use fully automatic heat presses. Default is single-sided no-hole, special ironing also available. Staff will assist with final steps.",
         feat2_title: "Free Tools",
@@ -132,7 +142,7 @@ const translations = {
         success_desc: "We've received your request and synced it to our calendar. Check your email for confirmation.",
         error_title: "⚠️ Submission Failed",
         error_desc: "Sorry, there was a problem. Please try again later.",
-        social_xhs: "RED",
+        social_xhs: "RedNote",
         social_wechat: "WeChat",
         wechat_scan_tip: "Scan to follow our WeChat Account",
         studio_location: "DIY Perler Bead Experience · Creative Pixel Art",
@@ -168,7 +178,7 @@ function renderDates() {
     const lang = languageSelect.value;
     const dateList = document.getElementById('dateList');
     dateList.innerHTML = '';
-    
+
     const today = new Date();
     const dayNames = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     const validDays = [3, 4, 5, 6, 0]; // Wed, Thu, Fri, Sat, Sun
@@ -184,11 +194,11 @@ function renderDates() {
             const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
             const dateNum = d.getDate();
             let dayName = translations[lang][dayNames[dayOfWeek]];
-            
+
             // Basic label check for Today/Tomorrow
             const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
             if (dateStr === todayStr) dayName = translations[lang].today;
-            
+
             const tmr = new Date();
             tmr.setDate(today.getDate() + 1);
             const tmrStr = `${tmr.getFullYear()}-${String(tmr.getMonth() + 1).padStart(2, '0')}-${String(tmr.getDate()).padStart(2, '0')}`;
@@ -196,7 +206,7 @@ function renderDates() {
 
             const card = document.createElement('div');
             card.className = `date-card ${bookingState.date === dateStr ? 'active' : ''}`;
-            
+
             // Default selection
             if (!bookingState.date && count === 0) {
                 card.className = 'date-card active';
@@ -227,17 +237,17 @@ function renderDates() {
 function renderTimeGrid(occupancy = {}, limit = 18) {
     const timeGrid = document.getElementById('timeGrid');
     timeGrid.innerHTML = '';
-    
+
     if (!bookingState.date) return;
-    
+
     // Parse date safely to avoid timezone shifts
     const [y, m, day] = bookingState.date.split('-').map(Number);
     const d = new Date(y, m - 1, day);
     const dayOfWeek = d.getDay();
-    
+
     let startHour = 12;
     let endHour = 18; // Default Wed/Thu
-    
+
     if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) { // Fri/Sat/Sun
         endHour = 20;
     }
@@ -246,13 +256,13 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
         const intervals = ['00', '30'];
         for (let m of intervals) {
             if (h === endHour && m === '30') continue;
-            
+
             const time = `${h}:${m}`;
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = `grid-btn ${bookingState.startTime === time ? 'active' : ''}`;
             btn.innerText = time;
-            
+
             // Disable if full (18 people limit)
             const currentCount = occupancy[time] || 0;
             if (currentCount >= limit) {
@@ -272,21 +282,21 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
 // 4. Availability Fetcher
 function fetchAvailability(date) {
     if (scriptURL.includes('YOUR_GOOGLE')) return renderTimeGrid();
-    
+
     // Simple loader
     const timeGrid = document.getElementById('timeGrid');
     timeGrid.innerHTML = '<div style="grid-column: span 4; font-size: 12px; color: #888;">Checking...</div>';
 
     fetch(`${scriptURL}?date=${date}`)
-    .then(r => r.json())
-    .then(res => {
-        if (res.status === 'success') {
-            renderTimeGrid(res.occupancy, res.limit || 18);
-        } else {
-            renderTimeGrid();
-        }
-    })
-    .catch(() => renderTimeGrid());
+        .then(r => r.json())
+        .then(res => {
+            if (res.status === 'success') {
+                renderTimeGrid(res.occupancy, res.limit || 18);
+            } else {
+                renderTimeGrid();
+            }
+        })
+        .catch(() => renderTimeGrid());
 }
 
 // 5. Price Calculator
@@ -322,7 +332,7 @@ document.querySelectorAll('.people-grid .grid-btn').forEach(btn => {
 // 7. Submission
 confirmBookingBtn.addEventListener('click', () => {
     const lang = languageSelect.value;
-    
+
     // Validate
     if (!bookingState.startTime) {
         alert(lang === 'zh' ? '请选择到店时间' : 'Please select arrival time');
@@ -354,12 +364,12 @@ confirmBookingBtn.addEventListener('click', () => {
         const [y, m, day] = bookingState.date.split('-').map(Number);
         const d = new Date(y, m - 1, day);
         const dayOfWeek = d.getDay();
-        
+
         let closingHour = 18; // Wed/Thu
         if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
             closingHour = 20; // Fri/Sat/Sun
         }
-        
+
         const startHour = parseInt(bookingState.startTime.split(':')[0]);
         const startMin = parseInt(bookingState.startTime.split(':')[1]) / 60;
         finalDuration = closingHour - (startHour + startMin);
@@ -377,21 +387,21 @@ confirmBookingBtn.addEventListener('click', () => {
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
     })
-    .then(r => r.json())
-    .then(res => {
-        if (res.status === 'success') {
-            document.querySelector('.booking-app').classList.add('hidden');
-            successMessage.classList.remove('hidden');
-        } else {
-            throw new Error(res.message);
-        }
-    })
-    .catch(err => {
-        confirmBookingBtn.disabled = false;
-        confirmBookingBtn.innerText = translations[lang].btn_confirm;
-        errorText.innerText = err.message || translations[lang].error_desc;
-        errorMessage.classList.remove('hidden');
-    });
+        .then(r => r.json())
+        .then(res => {
+            if (res.status === 'success') {
+                document.querySelector('.booking-app').classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            } else {
+                throw new Error(res.message);
+            }
+        })
+        .catch(err => {
+            confirmBookingBtn.disabled = false;
+            confirmBookingBtn.innerText = translations[lang].btn_confirm;
+            errorText.innerText = err.message || translations[lang].error_desc;
+            errorMessage.classList.remove('hidden');
+        });
 });
 
 // 8. Init
@@ -412,6 +422,29 @@ const highlightGrid = document.querySelector('.highlight-grid');
 
 // Complete list of image paths (starting after the first 3 already in HTML)
 const allHighlights = [
+    "photos/show_4.jpg",
+    "photos/show_5.jpg",
+    "photos/show_6.jpg",
+    "photos/show_7.jpg",
+    "photos/show_8.jpg",
+    "photos/show_9.jpg",
+    "photos/show_10.jpg",
+    "photos/show_11.jpg",
+    "photos/show_12.jpg",
+    "photos/show_13.jpg",
+    "photos/show_14.jpg",
+    "photos/show_15.jpg",
+    "photos/show_16.jpg",
+    "photos/show_17.jpg",
+    "photos/show_18.jpg",
+    "photos/show_19.jpg",
+    "photos/show_20.jpg",
+    "photos/show_21.jpg",
+    "photos/show_22.jpg",
+    "photos/show_23.jpg",
+    "photos/微信图片_20260411232112.jpg",
+    "photos/微信图片_20260411232124.jpg",
+    "photos/微信图片_20260411232130.jpg",
     "photos/微信图片_20260411232135.jpg",
     "photos/微信图片_20260411232139.jpg",
     "photos/微信图片_20260411232144.jpg",
@@ -447,23 +480,23 @@ if (openGalleryBtn) {
     openGalleryBtn.addEventListener('click', () => {
         // Load the next 3 images (one row)
         const nextBatch = allHighlights.slice(shownCount, shownCount + 3);
-        
+
         nextBatch.forEach(src => {
             const item = document.createElement('div');
             item.className = 'highlight-item';
             item.style.opacity = '0';
             item.innerHTML = `<img src="${src}" alt="Highlight">`;
             highlightGrid.appendChild(item);
-            
+
             // Simple fade in effect
             setTimeout(() => {
                 item.style.transition = 'opacity 0.5s';
                 item.style.opacity = '1';
             }, 10);
         });
-        
+
         shownCount += 3;
-        
+
         // Hide button if no more images
         if (shownCount >= allHighlights.length) {
             openGalleryBtn.style.display = 'none';
@@ -501,4 +534,98 @@ if (slider) {
     });
 }
 
+/* Summer Popup */
 
+const summerPopup =
+    document.getElementById('summerPopup');
+
+const summerPopupImage =
+    document.getElementById('summerPopupImage');
+
+const closeSummerPopup =
+    document.getElementById('closeSummerPopup');
+
+function updateSummerPopupImage() {
+
+    const lang = languageSelect.value;
+
+    if (lang === 'en') {
+
+        summerPopupImage.src =
+            'photos/summer-en.png';
+
+    } else {
+
+        summerPopupImage.src =
+            'photos/summer-cn.png';
+
+    }
+
+}
+
+/* Auto popup when page loads */
+
+window.addEventListener('load', () => {
+
+    updateSummerPopupImage();
+
+    setTimeout(() => {
+
+        summerPopup.classList.remove('hidden');
+
+    }, 1000);
+
+});
+
+/* Close popup */
+
+if (closeSummerPopup) {
+
+    closeSummerPopup.addEventListener('click', () => {
+
+        summerPopup.classList.add('hidden');
+
+    });
+
+}
+
+/* Update popup image on language switch */
+
+languageSelect.addEventListener('change', () => {
+
+    updateSummerPopupImage();
+
+    if (summerPopup) {
+
+        summerPopup.classList.remove('hidden');
+
+    }
+
+});
+
+window.addEventListener('click', (e) => {
+
+    if (e.target === summerPopup) {
+
+        summerPopup.classList.add('hidden');
+
+    }
+
+});
+
+/* Floating Summer Button */
+
+const floatingSummerBtn =
+    document.getElementById('floatingSummerBtn');
+
+if (floatingSummerBtn) {
+
+    floatingSummerBtn.addEventListener('click', () => {
+
+        updateSummerPopupImage();
+
+        summerPopup.classList.remove('hidden');
+
+    });
+
+}
