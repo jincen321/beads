@@ -1085,3 +1085,288 @@ footer {
     }
 
 }
+
+/* ===== MOBILE OPTIMIZATION PATCH ===== */
+
+@media (max-width: 768px) {
+
+    /* Header */
+
+    header {
+        padding: 14px 0;
+    }
+
+    header .container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-logo {
+        height: 42px;
+    }
+
+    /* Hero */
+
+    .hero {
+        padding: 90px 20px;
+        background-attachment: scroll;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        line-height: 1.15;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero p {
+        font-size: 22px;
+        line-height: 1.4;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .hero-slogan-line {
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .hero-deco-img {
+        height: 48px;
+    }
+
+    .desc-deco-img {
+        height: 28px;
+    }
+
+    .slogan-deco-img {
+        height: 22px;
+    }
+
+    .hero-icons {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-icons img {
+        height: 28px;
+    }
+
+    /* Buttons */
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        font-size: 16px;
+        padding: 14px 22px;
+    }
+
+    /* Membership */
+
+    .membership-banner {
+        padding: 50px 16px;
+    }
+
+    .membership-box {
+        padding: 28px 18px;
+        border-radius: 24px;
+    }
+
+    .membership-title {
+        font-size: 30px;
+        line-height: 1.2;
+        flex-wrap: wrap;
+    }
+
+    .membership-title-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .membership-items {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .membership-item {
+        padding: 18px;
+        gap: 14px;
+        border-radius: 18px;
+    }
+
+    .membership-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+    }
+
+    .membership-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .membership-main {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .membership-desc {
+        font-size: 13px;
+    }
+
+    /* Features */
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-item {
+        padding: 24px;
+    }
+
+    /* Gallery */
+
+    .highlight-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .highlight-item img {
+        height: 240px;
+    }
+
+    /* Pricing */
+
+    .price-tables {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card {
+        padding: 22px;
+    }
+
+    /* Booking */
+
+    .booking {
+        padding: 60px 0;
+    }
+
+    .booking-app {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 18px;
+    }
+
+    .studio-mini-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .studio-thumb {
+        width: 76px;
+        height: 76px;
+    }
+
+    .studio-info h3 {
+        font-size: 22px;
+    }
+
+    .grid-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .booking-footer {
+        padding: 18px;
+    }
+
+    .btn-submit {
+        font-size: 15px;
+    }
+
+    /* Popup */
+
+    .summer-popup {
+        padding: 12px;
+    }
+
+    .summer-popup-img {
+        max-width: 100%;
+        max-height: 82vh;
+        border-radius: 18px;
+    }
+
+    .summer-popup-close {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+        top: -8px;
+        right: -8px;
+    }
+
+    /* Floating Button */
+
+    .floating-summer-btn {
+        width: 64px;
+        height: 64px;
+        right: 14px;
+        bottom: 18px;
+    }
+
+    .floating-summer-btn img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .summer-badge {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+
+}
+
+/* ===== EXTRA SMALL DEVICES ===== */
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .membership-title {
+        font-size: 26px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .price-card {
+        padding: 18px;
+    }
+
+    th,
+    td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+}
