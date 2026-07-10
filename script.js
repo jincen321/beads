@@ -631,3 +631,217 @@ if (floatingSummerBtn) {
     });
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.querySelector(".promo-carousel-wrapper");
+
+    if (!carousel) {
+        return;
+    }
+
+    const slides = Array.from(
+        carousel.querySelectorAll(".promo-slide")
+    );
+
+    const prevButton = carousel.querySelector(
+        ".promo-carousel-prev"
+    );
+
+    const nextButton = carousel.querySelector(
+        ".promo-carousel-next"
+    );
+
+    const dotsContainer = carousel.querySelector(
+        ".promo-carousel-dots"
+    );
+
+    if (
+        slides.length === 0 ||
+        !prevButton ||
+        !nextButton ||
+        !dotsContainer
+    ) {
+        return;
+    }
+
+    let currentSlideIndex = 0;
+    let autoplayTimer = null;
+
+    // 每5秒自动切换
+    const autoplayDelay = 5000;
+
+    /*
+     * 根据图片数量自动创建圆点
+     */
+    slides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+
+        dot.type = "button";
+        dot.className = "promo-dot";
+        dot.dataset.slide = String(index);
+        dot.setAttribute(
+            "aria-label",
+            `显示第 ${index + 1} 张图片`
+        );
+
+        if (index === 0) {
+            dot.classList.add("active");
+        }
+
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(
+        dotsContainer.querySelectorAll(".promo-dot")
+    );
+
+    /*
+     * 显示指定图片
+     */
+    function showSlide(index) {
+        currentSlideIndex =
+            (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+            const isActive =
+                slideIndex === currentSlideIndex;
+
+            slide.classList.toggle(
+                "active",
+                isActive
+            );
+
+            slide.setAttribute(
+                "aria-hidden",
+                String(!isActive)
+            );
+        });
+
+        dots.forEach((dot, dotIndex) => {
+            const isActive =
+                dotIndex === currentSlideIndex;
+
+            dot.classList.toggle(
+                "active",
+                isActive
+            );
+
+            dot.setAttribute(
+                "aria-current",
+                isActive ? "true" : "false"
+            );
+        });
+    }
+
+    /*
+     * 下一张
+     */
+    function showNextSlide() {
+        showSlide(currentSlideIndex + 1);
+    }
+
+    /*
+     * 上一张
+     */
+    function showPreviousSlide() {
+        showSlide(currentSlideIndex - 1);
+    }
+
+    /*
+     * 开始自动播放
+     */
+    function startAutoplay() {
+        stopAutoplay();
+
+        autoplayTimer = window.setInterval(
+            showNextSlide,
+            autoplayDelay
+        );
+    }
+
+    /*
+     * 停止自动播放
+     */
+    function stopAutoplay() {
+        if (autoplayTimer !== null) {
+            window.clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+
+    /*
+     * 点击上一张
+     */
+    prevButton.addEventListener("click", () => {
+        showPreviousSlide();
+        startAutoplay();
+    });
+
+    /*
+     * 点击下一张
+     */
+    nextButton.addEventListener("click", () => {
+        showNextSlide();
+        startAutoplay();
+    });
+
+    /*
+     * 点击圆点切换
+     */
+    dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+            const index = Number(dot.dataset.slide);
+
+            if (!Number.isNaN(index)) {
+                showSlide(index);
+                startAutoplay();
+            }
+        });
+    });
+
+    /*
+     * 鼠标停在轮播图上时暂停
+     */
+    carousel.addEventListener(
+        "mouseenter",
+        stopAutoplay
+    );
+
+    carousel.addEventListener(
+        "mouseleave",
+        startAutoplay
+    );
+
+    /*
+     * 键盘焦点进入时暂停
+     */
+    carousel.addEventListener(
+        "focusin",
+        stopAutoplay
+    );
+
+    carousel.addEventListener(
+        "focusout",
+        startAutoplay
+    );
+
+    /*
+     * 浏览器页面切换到后台时暂停
+     */
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+            if (document.hidden) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+        }
+    );
+
+    /*
+     * 初始化第一张并开始播放
+     */
+    showSlide(0);
+    startAutoplay();
+});
