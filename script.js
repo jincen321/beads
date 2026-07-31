@@ -6,6 +6,20 @@ const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
 const errorText = errorMessage.querySelector('p');
 
+// Google Ads conversion tracking for successful workshop bookings
+function trackBookingConversion() {
+    if (typeof window.gtag !== 'function') {
+        console.warn('Google Ads conversion was not sent because gtag is unavailable.');
+        return;
+    }
+
+    window.gtag('event', 'conversion', {
+        send_to: 'AW-18091569661/dpPACKLD6dkcEP3j3bJD',
+        value: 1.0,
+        currency: 'USD'
+    });
+}
+
 // State
 let bookingState = {
     date: '',
@@ -392,6 +406,9 @@ confirmBookingBtn.addEventListener('click', () => {
         .then(r => r.json())
         .then(res => {
             if (res.status === 'success') {
+                // Record the conversion only after the booking API confirms success.
+                trackBookingConversion();
+
                 document.querySelector('.booking-app').classList.add('hidden');
                 successMessage.classList.remove('hidden');
             } else {
