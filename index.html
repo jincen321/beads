@@ -167,6 +167,85 @@
         </div>
     </section>
 
+    <!-- Customer Reviews -->
+    <section class="customer-reviews">
+        <div class="container">
+            <h2 class="reviews-title">
+                <span data-i18n="reviews_title">
+                    Beads Land Customer Reviews
+                </span>
+            </h2>
+
+            <div class="reviews-grid">
+
+                <!-- Review 1 -->
+                <article class="review-card">
+                    <div class="review-quote">“</div>
+
+                    <p>
+                        Absolutely love this place! I made this adorable pixel art
+                        piece and it even matches my nails perfectly 😭✨
+                    </p>
+
+                    <p>
+                        The store is super fun and creative, and everything is
+                        really well organized. The owner was incredibly friendly
+                        and welcoming, patiently explaining everything and making
+                        the whole experience even better.
+                    </p>
+
+                    <p>
+                        If you’re into DIY, pixel art, or just want a relaxing and
+                        cute activity, this is definitely a must-visit spot. I’ll
+                        100% come back again!
+                    </p>
+                </article>
+
+                <!-- Review 2 -->
+                <article class="review-card">
+                    <div class="review-quote">“</div>
+
+                    <p>
+                        I love this place! I want to go back already. The moment I
+                        walked in, I was greeted by this welcoming man who is fluent
+                        in English and Chinese.
+                    </p>
+
+                    <p>
+                        He was very helpful with guiding me through the perler bead
+                        stuff. It is a really nice space. It is a quiet place and I
+                        had so much fun listening to music and making the stuff I
+                        liked.
+                    </p>
+
+                    <p>
+                        10/10 place ❤️‍🩹❤️‍🩹❤️‍🩹❤️‍🩹
+                    </p>
+                </article>
+
+                <!-- Review 3 -->
+                <article class="review-card">
+                    <div class="review-quote">“</div>
+
+                    <p>
+                        Had such a fun time making Perler bead art here! The staff
+                        was incredibly friendly and patient, guiding me through the
+                        entire process even though it was my first time.
+                    </p>
+
+
+                    <p>
+                        The shop is clean, relaxing, and perfect for a fun activity
+                        with friends, family, or a date. Highly recommend this place
+                        if you’re looking for a creative and enjoyable experience.
+                        I’ll definitely be back to make more designs!
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
 
     <section class="membership-banner">
 
@@ -322,13 +401,13 @@
             </h2>
             <div class="highlight-grid">
                 <div class="highlight-item">
-                    <img src="photos/show_1.jpg" alt="Highlight 2">
+                    <img src="photos/show_24.jpg" alt="Highlight 2">
                 </div>
                 <div class="highlight-item">
-                    <img src="photos/show_2.jpg" alt="Highlight 3">
+                    <img src="photos/show_25.jpg" alt="Highlight 3">
                 </div>
                 <div class="highlight-item">
-                    <img src="photos/show_3.jpg" alt="Highlight 4">
+                    <img src="photos/show_26.jpg" alt="Highlight 4">
                 </div>
             </div>
             <div class="highlights-cta">
@@ -379,7 +458,23 @@
                             </tr>
                             <tr>
                                 <td data-i18n="td_duo_label">双人</td>
-                                <td>$32</td>
+
+                                <td class="duo-price-cell">
+                                    <span class="old-price">$32</span>
+
+                                    <div class="summer-discount-row">
+                                        <span
+                                            class="summer-discount-label"
+                                            data-i18n="summer_discount_label"
+                                        >
+                                            夏日优惠
+                                        </span>
+
+                                        <span class="summer-discount-price">
+                                            $27
+                                        </span>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -491,15 +586,86 @@
             </div>
         </div>
     </section>
-
-    <footer id="social">
+<footer id="social" class="site-footer">
         <div class="container">
-            <div class="social-links">
-                <a href="https://www.instagram.com/oc.beadsland/" target="_blank" class="social-icon">Instagram</a>
-                <a href="https://xhslink.com/m/30sBJLCk9o3" target="_blank" class="social-icon" data-i18n="social_xhs">小红书</a>
-                <a href="javascript:void(0)" id="wechatLink" class="social-icon" data-i18n="social_wechat">微信公众号</a>
+            <div class="footer-grid">
+                <section class="footer-column footer-brand" aria-label="Beads Land">
+                    <img src="photos/logo.png" alt="Beads Land Logo" class="footer-logo">
+                    <h3 class="footer-brand-name">Beads Land</h3>
+                </section>
+
+                <section class="footer-column">
+                    <h3 class="footer-title" data-i18n="footer_location_title">Our Location</h3>
+                    <address class="footer-address">
+                        14451 Chambers Rd, Suite 130<br>
+                        Tustin, CA 92780
+                    </address>
+                </section>
+
+                <section class="footer-column">
+                    <h3 class="footer-title" data-i18n="footer_social_title">Social Media</h3>
+                    <div class="footer-links">
+                        <a
+                            href="https://www.instagram.com/oc.beadsland/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon"
+                        >
+                            Instagram
+                        </a>
+
+                        <a
+                            href="https://xhslink.com/m/30sBJLCk9o3"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon"
+                            data-i18n="social_xhs"
+                        >
+                            RedNote
+                        </a>
+
+                        <a
+                            href="javascript:void(0)"
+                            id="wechatLink"
+                            class="social-icon"
+                            data-i18n="social_wechat"
+                        >
+                            WeChat
+                        </a>
+
+                        <a
+                            href="https://www.youtube.com/channel/UCcvcJGn2DflI9YW__K87wWA"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon"
+                        >
+                            YouTube
+                        </a>
+
+                        <a
+                            href="https://www.tiktok.com/@oc.beadsland"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-icon"
+                        >
+                            TikTok
+                        </a>
+                    </div>
+                </section>
+
+                <section class="footer-column">
+                    <h3 class="footer-title" data-i18n="footer_hours_title">Opening Hours</h3>
+                    <div class="footer-hours">
+                        <p data-i18n="footer_hours_mon_tue">Monday – Tuesday: Closed</p>
+                        <p data-i18n="footer_hours_wed_thu">Wednesday – Thursday: 12:00 PM – 6:00 PM</p>
+                        <p data-i18n="footer_hours_fri_sun">Friday – Sunday: 12:00 PM – 8:00 PM</p>
+                    </div>
+                </section>
             </div>
-            <p>&copy; 2026 <span data-i18n="footer_name">Beads Land</span>. All Rights Reserved.</p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 <span data-i18n="footer_name">Beads Land</span>. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
