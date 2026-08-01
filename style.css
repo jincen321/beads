@@ -1558,3 +1558,319 @@ footer {
         width: 23px;
     }
 }
+
+
+/* ========================================
+   Four-column site footer
+======================================== */
+
+footer.site-footer {
+    padding: 52px 0 28px;
+    text-align: left;
+}
+
+.site-footer .footer-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1.4fr 1fr 1.35fr;
+    gap: 38px;
+    align-items: start;
+}
+
+.site-footer .footer-column {
+    min-width: 0;
+}
+
+.site-footer .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.site-footer .footer-logo {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--box-shadow);
+}
+
+.site-footer .footer-brand-name,
+.site-footer .footer-title {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.site-footer .footer-brand-name {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 24px;
+}
+
+.site-footer .footer-title {
+    margin: 0 0 14px;
+    font-size: 20px;
+}
+
+.site-footer .footer-address {
+    margin: 0;
+    color: #666;
+    font-style: normal;
+    line-height: 1.8;
+}
+
+.site-footer .footer-links,
+.site-footer .footer-hours {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.site-footer .footer-links .social-icon {
+    display: inline-block;
+    width: fit-content;
+    margin: 0;
+}
+
+.site-footer .footer-hours p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.site-footer .footer-bottom {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #777;
+}
+
+@media (max-width: 900px) {
+    .site-footer .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    footer.site-footer {
+        padding-top: 38px;
+        text-align: center;
+    }
+
+    .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .site-footer .footer-links,
+    .site-footer .footer-hours {
+        align-items: center;
+    }
+}
+
+/* Duo Summer Discount */
+
+.old-duo,
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #ff6b8e;
+}
+
+.old-price {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.summer-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.summer-price span {
+    background: linear-gradient(90deg, #ff85a1, #ffb3c6);
+    color: white;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.summer-price strong {
+    color: #ff4f79;
+    font-size: 20px;
+}
+
+
+/* Duo Summer Discount */
+
+.duo-price-cell {
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* 原价 $32，只划掉价格 */
+.old-price {
+    display: block;
+    width: fit-content;
+    color: #999;
+    font-size: 16px;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #ff85a1;
+}
+
+/* 优惠信息 */
+.summer-discount-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+/* Summer Discount 粉色文字 */
+.summer-discount-label {
+    color: #ff4f79;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* $27 粉色背景、白色文字 */
+.summer-discount-price {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 10px;
+    border-radius: 999px;
+
+    background-color: #ff85a1;
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* ========================================
+   Customer Reviews
+======================================== */
+
+.customer-reviews {
+    padding: 80px 20px;
+    background:
+        linear-gradient(
+            180deg,
+            #fff9fc 0%,
+            #ffffff 100%
+        );
+}
+
+.reviews-title {
+    margin-bottom: 45px;
+    color: var(--primary-color);
+    font-size: 42px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.review-card {
+    position: relative;
+    padding: 38px 28px 30px;
+    overflow: hidden;
+
+    background: white;
+    border: 2px solid #ffe4ee;
+    border-radius: 26px;
+
+    box-shadow:
+        0 14px 35px rgba(255, 133, 161, 0.11),
+        0 4px 12px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 20px 45px rgba(255, 133, 161, 0.17),
+        0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.review-quote {
+    position: absolute;
+    top: 2px;
+    left: 18px;
+
+    color: rgba(255, 133, 161, 0.22);
+    font-family: Georgia, serif;
+    font-size: 76px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.review-card p {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 16px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.review-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .customer-reviews {
+        padding: 55px 16px;
+    }
+
+    .reviews-title {
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+
+    .review-card {
+        padding: 34px 22px 26px;
+        border-radius: 20px;
+    }
+
+    .review-card p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+}
