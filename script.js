@@ -523,7 +523,7 @@ if (openGalleryBtn) {
             const item = document.createElement('div');
             item.className = 'highlight-item';
             item.style.opacity = '0';
-            item.innerHTML = `<img src="${src}" alt="Highlight">`;
+            item.innerHTML = `<img src="${src}" alt="Highlight" loading="lazy" decoding="async">`;
             highlightGrid.appendChild(item);
 
             // Simple fade in effect
@@ -590,12 +590,12 @@ function updateSummerPopupImage() {
     if (lang === 'en') {
 
         summerPopupImage.src =
-            'photos/summer-en.png';
+            'photos/summer-en.webp';
 
     } else {
 
         summerPopupImage.src =
-            'photos/summer-cn.png';
+            'photos/summer-cn.webp';
 
     }
 
