@@ -1,9 +1,9 @@
 // This is the same Google Apps Script Web App URL already used by the main website.
 // After adding Code.gs to that Apps Script project, update/redeploy the Web App.
-const SEAT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxH223DCEVeVRjaia4Bb7qtKVC13RzpPjQJnlYW-TOLvoDKRpPKNNIvwE5i1h6qPdpr0Q/exec';
+const SEAT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9lY9Fu-EnGobefK_5R4-vgtHtA2G9nz1cU6ZHXn6jdcYb4XCX21_9vJsSwDkK9laEwA/exec';
 
 const EVENT = {
-    date: '2026-09-28',
+    date: '2026-09-21',
     startTime: '18:00',
     endTime: '20:00'
 };
@@ -60,11 +60,11 @@ function buildLayout() {
     const wrap = $('B3B5');
     ['B3','B4','B5'].forEach(table => {
         const block = document.createElement('div');
-        block.className = 'table-four';
+        block.className = 'table-zone compact-zone';
         block.innerHTML = `
-            <div id="${table}Top" class="seat-row"></div>
-            <div class="table-box four-table-box">${table} · 4P</div>
-            <div id="${table}Bottom" class="seat-row"></div>`;
+            <div id="${table}Top" class="seat-row seat-row-two"></div>
+            <div class="table-surface table-small"><span>${table}</span></div>
+            <div id="${table}Bottom" class="seat-row seat-row-two"></div>`;
         wrap.appendChild(block);
         appendSeats(`${table}Top`, [`${table}-1`,`${table}-2`]);
         appendSeats(`${table}Bottom`, [`${table}-3`,`${table}-4`]);
@@ -232,7 +232,7 @@ async function findBooking() {
         $('reservationDetail').innerHTML = `
             <div><strong>Reservation:</strong> ${escapeHtml(r.bookingCode)}</div>
             <div><strong>Name:</strong> ${escapeHtml(r.name)}</div>
-            <div><strong>Date:</strong> September 28, 2026</div>
+            <div><strong>Date:</strong> September 21, 2026</div>
             <div><strong>Time:</strong> 6:00 PM–8:00 PM</div>
             <div><strong>Seats:</strong> ${escapeHtml(r.seats.join(', '))}</div>
             <div><strong>Guests:</strong> ${r.seats.length}</div>`;
