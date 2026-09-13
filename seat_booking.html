@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Beads Land | September 28 Seat Reservation</title>
+    <link rel="stylesheet" href="seat_booking.css">
+</head>
+<body>
+    <header class="visual-topbar">
+        <a class="back-home" href="index.html" aria-label="Back to Beads Land">←</a>
+        <div class="event-heading">
+            <div class="event-badge">SPECIAL EVENT</div>
+            <h1>Choose Your Seats</h1>
+            <div class="event-meta">
+                <span>📅 Sep 28, 2026</span>
+                <span>🕕 6:00 PM–8:00 PM</span>
+            </div>
+        </div>
+        <button class="icon-action" type="button" id="manageBtn" title="Manage Reservation" aria-label="Manage Reservation">🎟️</button>
+    </header>
+
+    <section class="seat-toolbar">
+        <div class="legend" aria-label="Seat legend">
+            <span><i class="legend-dot open-dot"></i>Available</span>
+            <span><i class="legend-dot selected-dot"></i>Selected</span>
+            <span><i class="legend-dot reserved-dot"></i>Reserved</span>
+        </div>
+        <div class="toolbar-right">
+            <span id="availabilityStatus" class="availability-status">Loading seats…</span>
+            <button class="refresh-icon" type="button" id="refreshSeatsBtn" title="Refresh seats" aria-label="Refresh seats">↻</button>
+        </div>
+    </section>
+
+    <main class="floor-wrap">
+        <div class="floor-plan">
+            <section class="room-panel room-a-panel">
+                <div class="room-title">ROOM A</div>
+                <div class="room-inner room-a-inner">
+                    <div class="table-zone a1-zone">
+                        <div id="A1Top" class="seat-row seat-row-three"></div>
+                        <div class="table-surface table-a1">
+                            <span>A1</span>
+                            <small>6 seats</small>
+                        </div>
+                        <div id="A1Bottom" class="seat-row seat-row-three"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="room-panel room-b-panel">
+                <div class="room-title">ROOM B</div>
+                <div class="room-inner b-layout">
+                    <div class="b-left-column">
+                        <div class="table-zone b1-zone featured-zone">
+                            <div id="B1Row" class="seat-row b1-four-connected"></div>
+                            <div class="table-surface table-b1">
+                                <span>B1</span>
+                                <small>4 seats</small>
+                            </div>
+                        </div>
+
+                        <div class="table-zone compact-zone">
+                            <div id="B2Top" class="seat-row seat-row-two"></div>
+                            <div class="table-surface table-small"><span>B2</span></div>
+                            <div id="B2Bottom" class="seat-row seat-row-two"></div>
+                        </div>
+                    </div>
+
+                    <div id="B3B5" class="b-right-column"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="selectionDock" class="selection-dock hidden">
+        <div class="dock-count">
+            <strong id="selectedCount">0</strong>
+            <span>seat(s) selected</span>
+        </div>
+        <div class="dock-actions">
+            <button class="dock-clear" type="button" id="clearBtn">Clear</button>
+            <button class="dock-reserve" type="button" id="reserveBtn">Reserve Seats →</button>
+        </div>
+    </div>
+
+    <div id="bookingModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card booking-card">
+            <button class="modal-x" type="button" data-close="bookingModal" aria-label="Close">×</button>
+            <div class="modal-icon">✨</div>
+            <h2>Confirm Your Seats</h2>
+            <p class="modal-sub">Sep 28 · 6:00 PM–8:00 PM</p>
+            <div class="visual-summary">
+                <div><span class="summary-icon">💺</span><strong id="bookingSeats"></strong></div>
+                <div><span class="summary-icon">👥</span><strong id="bookingGuests"></strong> guest(s)</div>
+            </div>
+            <label class="field-label" for="guestName">Name</label>
+            <input id="guestName" class="field" autocomplete="name" maxlength="100" placeholder="Your name">
+            <label class="field-label" for="guestEmail">Email</label>
+            <input id="guestEmail" class="field" type="email" autocomplete="email" maxlength="255" placeholder="Email for confirmation">
+            <div id="bookingError" class="error-box hidden"></div>
+            <button id="confirmBookingBtn" class="modal-primary" type="button">Confirm Reservation</button>
+        </div>
+    </div>
+
+    <div id="manageModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <button class="modal-x" type="button" data-close="manageModal" aria-label="Close">×</button>
+            <div class="modal-icon">🎟️</div>
+            <h2>Manage Reservation</h2>
+            <p class="modal-sub">Use the email and reservation number from your confirmation.</p>
+            <label class="field-label" for="manageEmail">Email</label>
+            <input id="manageEmail" class="field" type="email" autocomplete="email" placeholder="your@email.com">
+            <label class="field-label" for="manageCode">Reservation Number</label>
+            <input id="manageCode" class="field code-input" autocomplete="off" placeholder="BL-928-XXXXXX">
+            <div id="manageError" class="error-box hidden"></div>
+            <button id="findBookingBtn" class="modal-dark" type="button">Find Reservation</button>
+        </div>
+    </div>
+
+    <div id="detailModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <button class="modal-x" type="button" data-close="detailModal" aria-label="Close">×</button>
+            <div class="modal-icon">📋</div>
+            <h2>Reservation Details</h2>
+            <div id="reservationDetail" class="detail-box"></div>
+            <button id="withdrawBtn" class="modal-danger" type="button">Withdraw Reservation</button>
+        </div>
+    </div>
+
+    <div id="noticeModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card notice-card">
+            <button class="modal-x" type="button" data-close="noticeModal" aria-label="Close">×</button>
+            <div id="noticeIcon" class="notice-icon">✓</div>
+            <h2 id="noticeTitle"></h2>
+            <div id="noticeBody" class="detail-box"></div>
+            <button class="modal-dark" type="button" data-close="noticeModal">OK</button>
+        </div>
+    </div>
+
+    <script src="seat_booking.js"></script>
+</body>
+</html>
