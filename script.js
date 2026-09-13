@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzyTviurDS_8Ifn7MaGhhsrrFNuznqIiBkZQh02K-FiRM6Xqm4lI1nE91cmw_Eg2T3FhA/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz9lY9Fu-EnGobefK_5R4-vgtHtA2G9nz1cU6ZHXn6jdcYb4XCX21_9vJsSwDkK9laEwA/exec';
 const languageSelect = document.getElementById('languageSelect');
 const totalPriceDisplay = document.getElementById('totalPriceDisplay');
 const confirmBookingBtn = document.getElementById('confirmBookingBtn');
@@ -69,7 +69,7 @@ const translations = {
         td_duo_label: "双人",
         summer_discount_label: "夏日优惠",
         summer_booking_btn: "立即预约座位",
-        summer_booking_sub: "9月28日 · 18:00–20:00",
+        summer_booking_sub: "9月21日 · 18:00–20:00",
         th_date: "日期",
         td_wed_thu: "周三 - 周四",
         td_fri_sun: "周五 - 周日",
@@ -146,7 +146,7 @@ const translations = {
         td_duo_label: "Duo",
         summer_discount_label: "Summer Discount",
         summer_booking_btn: "Reserve Seats Now",
-        summer_booking_sub: "Sep 28 · 6:00 PM–8:00 PM",
+        summer_booking_sub: "Sep 21 · 6:00 PM–8:00 PM",
         th_date: "Date",
         td_wed_thu: "Wed - Thu",
         td_fri_sun: "Fri - Sun",
@@ -288,10 +288,9 @@ function renderTimeGrid(occupancy = {}, limit = 18) {
         endHour = 20;
     }
 
-    for (let h = startHour; h <= endHour; h++) {
+    for (let h = startHour; h < endHour; h++) {
         const intervals = ['00', '30'];
         for (let m of intervals) {
-            if (h === endHour && m === '30') continue;
 
             const time = `${h}:${m}`;
             const btn = document.createElement('button');
@@ -406,9 +405,39 @@ confirmBookingBtn.addEventListener('click', () => {
             closingHour = 20; // Fri/Sat/Sun
         }
 
-        const startHour = parseInt(bookingState.startTime.split(':')[0]);
-        const startMin = parseInt(bookingState.startTime.split(':')[1]) / 60;
+        const startHour = parseInt(bookingState.startTime.split(':')[0], 10);
+        const startMin = parseInt(bookingState.startTime.split(':')[1], 10) / 60;
         finalDuration = closingHour - (startHour + startMin);
+    }
+
+    // Never send a zero/negative duration to Google Calendar.
+    if (!Number.isFinite(finalDuration) || finalDuration <= 0) {
+        alert(lang === 'zh'
+            ? '该到店时间已经到达或超过营业结束时间，请选择更早的时间。'
+            : 'This arrival time is at or after closing. Please choose an earlier time.');
+        confirmBookingBtn.disabled = false;
+        confirmBookingBtn.innerText = translations[lang].btn_confirm;
+        return;
+    }
+
+    // Prevent ordinary sessions from extending beyond closing time.
+    if (!bookingState.isAllDay) {
+        const [y, m, day] = bookingState.date.split('-').map(Number);
+        const d = new Date(y, m - 1, day);
+        const dayOfWeek = d.getDay();
+        let closingHour = 18;
+        if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) closingHour = 20;
+
+        const [startHourText, startMinuteText] = bookingState.startTime.split(':');
+        const startDecimal = parseInt(startHourText, 10) + parseInt(startMinuteText, 10) / 60;
+        if (startDecimal + finalDuration > closingHour) {
+            alert(lang === 'zh'
+                ? '所选时长会超过营业结束时间，请选择更早的到店时间或更短的时长。'
+                : 'The selected duration would run past closing. Please choose an earlier arrival time or a shorter duration.');
+            confirmBookingBtn.disabled = false;
+            confirmBookingBtn.innerText = translations[lang].btn_confirm;
+            return;
+        }
     }
 
     const payload = {
