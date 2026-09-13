@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxH223DCEVeVRjaia4Bb7qtKVC13RzpPjQJnlYW-TOLvoDKRpPKNNIvwE5i1h6qPdpr0Q/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzyTviurDS_8Ifn7MaGhhsrrFNuznqIiBkZQh02K-FiRM6Xqm4lI1nE91cmw_Eg2T3FhA/exec';
 const languageSelect = document.getElementById('languageSelect');
 const totalPriceDisplay = document.getElementById('totalPriceDisplay');
 const confirmBookingBtn = document.getElementById('confirmBookingBtn');
@@ -68,6 +68,8 @@ const translations = {
         td_solo_label: "单人",
         td_duo_label: "双人",
         summer_discount_label: "夏日优惠",
+        summer_booking_btn: "立即预约座位",
+        summer_booking_sub: "9月28日 · 18:00–20:00",
         th_date: "日期",
         td_wed_thu: "周三 - 周四",
         td_fri_sun: "周五 - 周日",
@@ -99,7 +101,7 @@ const translations = {
         footer_social_title: "社交媒体",
         footer_hours_title: "营业时间",
         footer_hours_mon_tue: "周一至周二：休息",
-        footer_hours_wed_thu: "周三至周四：中午12:00至晚上7:00",
+        footer_hours_wed_thu: "周三至周四：中午12:00至下午7:00",
         footer_hours_fri_sun: "周五至周日：中午12:00至晚上9:00",
         wechat_scan_tip: "扫一扫，关注我们的微信公众号",
         footer_name: "Beads Land",
@@ -143,6 +145,8 @@ const translations = {
         td_solo_label: "Solo",
         td_duo_label: "Duo",
         summer_discount_label: "Summer Discount",
+        summer_booking_btn: "Reserve Seats Now",
+        summer_booking_sub: "Sep 28 · 6:00 PM–8:00 PM",
         th_date: "Date",
         td_wed_thu: "Wed - Thu",
         td_fri_sun: "Fri - Sun",
@@ -174,8 +178,8 @@ const translations = {
         footer_social_title: "Social Media",
         footer_hours_title: "Opening Hours",
         footer_hours_mon_tue: "Monday – Tuesday: Closed",
-        footer_hours_wed_thu: "Wednesday – Thursday: 12:00 PM – 7:00 PM",
-        footer_hours_fri_sun: "Friday – Sunday: 12:00 PM – 9:00 PM",
+        footer_hours_wed_thu: "Wednesday – Thursday: 12:00 PM – 6:00 PM",
+        footer_hours_fri_sun: "Friday – Sunday: 12:00 PM – 8:00 PM",
         wechat_scan_tip: "Scan to follow our WeChat Account",
         studio_location: "DIY Perler Bead Experience · Creative Pixel Art",
         footer_name: "Beads Land",
@@ -590,12 +594,12 @@ function updateSummerPopupImage() {
     if (lang === 'en') {
 
         summerPopupImage.src =
-            'photos/summer-en.webp';
+            'photos/MID_AUTUMN_EN.jpg';
 
     } else {
 
         summerPopupImage.src =
-            'photos/summer-cn.webp';
+            'photos/MID_AUTUMN_CN.jpg';
 
     }
 
@@ -650,6 +654,17 @@ window.addEventListener('click', (e) => {
     }
 
 });
+
+const summerBookingBtn =
+    document.getElementById('summerBookingBtn');
+
+if (summerBookingBtn) {
+    summerBookingBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = languageSelect.value === 'en' ? 'en' : 'zh';
+        window.location.href = `seat_booking.html?lang=${lang}`;
+    });
+}
 
 /* Floating Summer Button */
 
